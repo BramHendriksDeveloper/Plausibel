@@ -20,11 +20,22 @@ namespace Plausibel.Operator
 
         public override void SetValue(bool input)
         {
+            _IsFull = true;
+            _IsUsed = true;
             _Value = input;
         }
 
         public bool GetValue()
         {
+            if (!IsUsed())
+            {
+                System.Console.WriteLine("This operator ("+ GetName() +") has not been used yet.");
+            }
+            else if (!IsFull())
+            {
+                System.Console.WriteLine("This operator (" + GetName() + ") has no value yet.");
+            }
+
             return _Value;
         }
     }

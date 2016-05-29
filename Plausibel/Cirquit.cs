@@ -10,19 +10,37 @@ namespace Plausibel
     public class Cirquit
     {
         private Dictionary<String, BaseOperator> _Operators;
+        private Dictionary<String, InputOperator> _InputOperators = new Dictionary<string, InputOperator>();
+        private Dictionary<String, ProbeOperator> _OutputOperators = new Dictionary<string, ProbeOperator>();
 
-        public Cirquit(Dictionary<String, BaseOperator> operators)
+        public Cirquit(Dictionary<String, BaseOperator> allOperators)
         {
-            _Operators = operators;
+            _Operators = allOperators;
+
+            foreach (KeyValuePair<string, BaseOperator> item in allOperators) {
+                if(item.Value is InputOperator)
+                {
+                    _InputOperators.Add(item.Key, (InputOperator) item.Value);
+                } else if (item.Value is ProbeOperator)
+                {
+                    _OutputOperators.Add(item.Key, (ProbeOperator) item.Value);
+                }
+            }
         }
 
-        public bool Emulate(bool inputOne, bool inputTwo, bool Cin)
+        public List<InputOperator> GetInputOperators()
         {
-            Set("A", inputOne);
-            Set("B", inputTwo);
-            Set("Cin", Cin);
+            return _InputOperators.Values.ToList();
+        }
 
-            return Get("S");
+        public Dictionary<string, bool> Emulate(Dictionary<string, bool> values)
+        {
+            foreach(KeyValuePair<string, bool> value in values)
+            {
+                Set(value.Key, value.Value);
+            }
+
+            return _OutputOperators.ToDictionary(v => v.Value.GetName(), v => v.Value.GetValue());
         }
 
         public void Set(string operatorName, bool value)

@@ -15,10 +15,7 @@ namespace Plausibel
 
         public Cirquit GetCirquit(string fileName)
         {
-            //System.Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
-            //Path p = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "schemas/schema.txt");
-
-            _StreamReader = new StreamReader("D:\\Users\\Frank\\Desktop\\schemas\\" + fileName + ".txt");
+            _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\schemas\\" + fileName + ".txt");
             _Factory = new OperatorFactory();
 
             Dictionary<String, BaseOperator> Operators = ParseInitialization();

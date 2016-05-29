@@ -11,8 +11,7 @@ namespace Plausibel.Operator
         public BaseOperator GetOperatorByName(string operatorName, string name)
         {
             operatorName = GetClassName(operatorName);
-
-            System.Console.WriteLine("Plausibel.Operator." + operatorName);
+            
             Type type = Type.GetType("Plausibel.Operator." + operatorName);
 
             return (BaseOperator) Activator.CreateInstance(type, new object[] { name });

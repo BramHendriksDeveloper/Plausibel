@@ -12,15 +12,41 @@ namespace Plausibel
         static void Main(string[] args)
         {
 
-            OperatorFactory x = new OperatorFactory();
-            Parser p = new Parser();
+            do
+            {
 
-            Cirquit c = p.GetCirquit("one");
-            bool xd = c.Emulate(true, false, false);
+                OperatorFactory x = new OperatorFactory();
+                Parser p = new Parser();
 
-            BaseOperator o = x.GetOperatorByName("and", "first");
+                Cirquit c = p.GetCirquit("one");
 
-            System.Console.WriteLine(o.GetType());
+                Dictionary<string, bool> allInput = new Dictionary<string, bool>();
+
+                foreach (InputOperator io in c.GetInputOperators())
+                {
+                    string input;
+                    do
+                    {
+                        System.Console.Write("Value of " + io.GetName() + ": ");
+                        input = System.Console.ReadKey().KeyChar.ToString();
+                        System.Console.WriteLine();
+                    } while (input != "0" && input != "1");
+
+                    allInput.Add(io.GetName(), input == "1");
+                }
+
+                Dictionary<string, bool> output = c.Emulate(allInput);
+
+                foreach(KeyValuePair<string, bool> v in output)
+                {
+                    System.Console.WriteLine("Value of " + v.Key + " became: " + (v.Value ? "1" : "0"));
+                }
+
+                System.Console.WriteLine("Press any key to continue ... ");
+
+                System.Console.ReadKey();
+
+            } while (true);
 
         }
     }

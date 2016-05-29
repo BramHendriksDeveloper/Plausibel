@@ -28,6 +28,7 @@ namespace Plausibel.Operator
         {
             foreach(BaseOperator next in _NextOperators)
             {
+                System.Console.WriteLine("Nav from " + _Name + " to " + next.GetName());
                 next.SetValue(output);
             }
         }
@@ -40,6 +41,11 @@ namespace Plausibel.Operator
         public Boolean IsFull()
         {
             return _IsFull;
+        }
+
+        public string GetName()
+        {
+            return _Name;
         }
 
         abstract public Boolean PerformOperation();

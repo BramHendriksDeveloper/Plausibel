@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Plausibel.Operator
 {
-    class InputOperator : SingleInputOperator
+    public class InputOperator : SingleInputOperator
     {
         public InputOperator(String name) : base(name) { }
 
