@@ -18,7 +18,15 @@ namespace Plausibel
                 OperatorFactory x = new OperatorFactory();
                 Parser p = new Parser();
 
-                Cirquit c = p.GetCirquit("one");
+                string circuitInput = "";
+                do
+                {
+                    System.Console.Write("Write the name of the circuit: ");
+                    circuitInput = System.Console.ReadLine();
+                    System.Console.WriteLine("Chosen circuit: " + circuitInput);
+                } while (circuitInput == "");
+
+                Cirquit c = p.GetCirquit(circuitInput);
 
                 Dictionary<string, bool> allInput = new Dictionary<string, bool>();
 
