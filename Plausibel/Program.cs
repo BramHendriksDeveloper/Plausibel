@@ -19,14 +19,21 @@ namespace Plausibel
                 Parser p = new Parser();
 
                 string circuitInput = "";
+                Cirquit c = null;
                 do
                 {
                     System.Console.Write("Write the name of the circuit: ");
                     circuitInput = System.Console.ReadLine();
-                    System.Console.WriteLine("Chosen circuit: " + circuitInput);
-                } while (circuitInput == "");
-
-                Cirquit c = p.GetCirquit(circuitInput);
+                    try
+                    {
+                        c = p.GetCirquit(circuitInput);
+                        System.Console.WriteLine("Chosen circuit: " + circuitInput);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Console.WriteLine("Circuit does not exist in <Desktop>/circuits");
+                    }
+                } while (c == null);
 
                 Dictionary<string, bool> allInput = new Dictionary<string, bool>();
 

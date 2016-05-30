@@ -15,7 +15,14 @@ namespace Plausibel
 
         public Cirquit GetCirquit(string fileName)
         {
-            _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\schemas\\" + fileName + ".txt");
+            try
+            {
+                _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\circuits\\" + fileName + ".txt");
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
             _Factory = new OperatorFactory();
 
             Dictionary<String, BaseOperator> Operators = ParseInitialization();
