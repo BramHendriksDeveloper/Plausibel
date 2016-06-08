@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Plausibel.Operator;
 
-namespace Plausibel
+namespace Plausibel.Cirquit
 {
     public class Cirquit
     {
-        private Dictionary<String, BaseOperator> _Operators;
-        private Dictionary<String, InputOperator> _InputOperators = new Dictionary<string, InputOperator>();
-        private Dictionary<String, ProbeOperator> _OutputOperators = new Dictionary<string, ProbeOperator>();
+        private Dictionary<string, BaseOperator> _Operators;
+        private Dictionary<string, InputOperator> _InputOperators = new Dictionary<string, InputOperator>();
+        private Dictionary<string, ProbeOperator> _OutputOperators = new Dictionary<string, ProbeOperator>();
 
-        public Cirquit(Dictionary<String, BaseOperator> allOperators)
+        public Cirquit(Dictionary<string, BaseOperator> allOperators)
         {
             _Operators = allOperators;
 

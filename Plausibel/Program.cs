@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plausibel.Operator;
+using Plausibel.Parser;
+using Plausibel.Cirquit;
 
 namespace Plausibel
 {
@@ -14,11 +16,12 @@ namespace Plausibel
 
             do
             {
-
                 OperatorFactory x = new OperatorFactory();
-                Parser p = new Parser();
+                
+                FileParser p = new FileParser();
+                CirquitCreator cCreator = new CirquitCreator(p);
 
-                Cirquit c = p.GetCirquit("one");
+                Cirquit.Cirquit c = cCreator.GetCirquit("one");
 
                 Dictionary<string, bool> allInput = new Dictionary<string, bool>();
 

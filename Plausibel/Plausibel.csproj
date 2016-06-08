@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cirquit.cs" />
+    <Compile Include="Cirquit\Cirquit.cs" />
     <Compile Include="Operator\AndOperator.cs" />
     <Compile Include="Operator\BaseOperator.cs" />
     <Compile Include="Operator\DualInputOperator.cs" />
@@ -58,7 +58,9 @@
     <Compile Include="Operator\ProbeOperator.cs" />
     <Compile Include="Operator\SingleInputOperator.cs" />
     <Compile Include="Operator\XorOperator.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="Cirquit\CirquitCreator.cs" />
+    <Compile Include="Parser\FileParser.cs" />
+    <Compile Include="Parser\IParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

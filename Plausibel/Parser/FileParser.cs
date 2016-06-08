@@ -1,53 +1,54 @@
-﻿using System;
+﻿using Plausibel.Operator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Plausibel.Operator;
 
-namespace Plausibel
+namespace Plausibel.Parser
 {
-    public class Parser
+    public class FileParser : IParser
     {
         private StreamReader _StreamReader;
-        private OperatorFactory _Factory;
 
-        public Cirquit GetCirquit(string fileName)
+        public void SetCircuitName(string Name)
         {
-            _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\schemas\\" + fileName + ".txt");
-            _Factory = new OperatorFactory();
-
-            Dictionary<String, BaseOperator> Operators = ParseInitialization();
-            ParseDecorator(Operators);
-            Console.WriteLine("done");
-            _StreamReader.Close();
-
-            _StreamReader = null;
-
-            return new Cirquit(Operators);
+            _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\schemas\\" + Name + ".txt");
         }
 
-        private Dictionary<String, BaseOperator> ParseInitialization()
+        public Dictionary<string, string> GetInitialization()
         {
-            Dictionary<String, BaseOperator> result = new Dictionary<string, BaseOperator>();
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            if(_StreamReader == null)
+            {
+                Console.WriteLine("Please open a file first");
+                return result;
+            }
 
             Console.WriteLine("Init");
             String line;
-            while((line = ReadNextLine()).Length > 0)
+            while ((line = ReadNextLine()).Length > 0)
             {
                 string[] details = ExtractLine(line);
 
                 Console.WriteLine(details[0] + " is type of " + details[1]);
 
-                result.Add(details[0], _Factory.GetOperatorByName(details[1], details[0]))  ;
+                result.Add(details[0], details[1]);
             }
 
             return result;
         }
 
-        private void ParseDecorator(Dictionary<String, BaseOperator> Operators)
+        public Dictionary<string, BaseOperator> DecorateOperators(Dictionary<string, BaseOperator> Operators)
         {
+            if (_StreamReader == null)
+            {
+                Console.WriteLine("Please open a file first");
+                return Operators;
+            }
+
             Console.WriteLine("Decorator");
             String line;
             while ((line = ReadNextLine()).Length > 0)
@@ -60,6 +61,8 @@ namespace Plausibel
                     Provider.SetNextOperator(Operators[Receiver]);
                 }
             }
+
+            return Operators;
         }
 
         private string ReadNextLine()
@@ -67,13 +70,13 @@ namespace Plausibel
             String line;
 
             while ((line = _StreamReader.ReadLine()) != null)
-            {   
-                if(line.Length == 0)
+            {
+                if (line.Length == 0)
                 {
                     return "";
                 }
 
-                if(line.Substring(0, 1).ToString() == "#")
+                if (line.Substring(0, 1).ToString() == "#")
                 {
                     // comment, continue
                     continue;
@@ -99,6 +102,12 @@ namespace Plausibel
             {
                 Result[0], Result[1]
             };
+        }
+
+        public void StopParsing()
+        {
+            _StreamReader.Close();
+            _StreamReader = null;
         }
     }
 }
