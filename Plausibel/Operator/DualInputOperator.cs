@@ -8,7 +8,7 @@ namespace Plausibel.Operator
 {
     public abstract class DualInputOperator : BaseOperator
     {
-        protected bool[] _Value = new bool[2];
+        protected Boolean[] _Value = new bool[2];
         private int _Iterator = 0;
 
          public DualInputOperator(String name) : base(name) { }

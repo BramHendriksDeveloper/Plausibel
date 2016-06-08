@@ -25,7 +25,7 @@ namespace Plausibel.Operator
             _Value = input;
         }
 
-        public bool GetValue()
+        public Boolean GetValue()
         {
             if (!IsUsed())
             {
