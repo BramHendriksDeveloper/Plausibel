@@ -8,6 +8,16 @@ namespace Plausibel.Operator
 {
     public class NandOperator : DualInputOperator
     {
+        private static double _Delay = 0.3;
+
+        public override double Delay
+        {
+            get
+            {
+                return NandOperator._Delay;
+            }
+        }
+
         public NandOperator(String name) : base(name) { }
 
         public override bool PerformOperation()

@@ -41,6 +41,22 @@ namespace Plausibel.Cirquit
             return _OutputOperators.ToDictionary(v => v.Value.GetName(), v => v.Value.GetValue());
         }
 
+        public double GetEmulationSpeed()
+        {
+            double longest = 0;
+
+            foreach(KeyValuePair<string, ProbeOperator> value in _OutputOperators)
+            {
+                double time = value.Value.GetDelay();
+                if(time > longest)
+                {
+                    longest = time;
+                }
+            }
+
+            return longest;
+        }
+
         public void Set(string operatorName, bool value)
         {
             if(_Operators.ContainsKey(operatorName) && _Operators[operatorName] is InputOperator && !_Operators[operatorName].IsFull())

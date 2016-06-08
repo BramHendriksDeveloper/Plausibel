@@ -51,6 +51,9 @@ namespace Plausibel
                 }
 
                 Dictionary<string, bool> output = c.Emulate(allInput);
+                double time = c.GetEmulationSpeed();
+
+                System.Console.WriteLine("Speed was: " + time.ToString());
 
                 foreach(KeyValuePair<string, bool> v in output)
                 {
