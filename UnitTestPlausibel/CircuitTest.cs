@@ -97,5 +97,23 @@ namespace UnitTestPlausibel
             Assert.AreEqual(true, output["S"]);
             Assert.AreEqual(true, output["Cout"]);
         }
+
+        [TestMethod]
+        public void CircuitTestThree()
+        {
+            // arrange
+            OperatorFactory opFactory = new OperatorFactory();
+            FileParser fParser = new FileParser();
+            CirquitCreator cCreator = new CirquitCreator(fParser);
+            Cirquit cirquit = cCreator.GetCirquit("three");
+
+            // act
+            Dictionary<string, bool> output = cirquit.Emulate(new Dictionary<string, bool> {
+                { "A", false }
+            });
+
+            // assert
+            Assert.AreEqual(false, output["F"]);
+        }
     }
 }
