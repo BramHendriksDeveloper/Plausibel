@@ -55,6 +55,13 @@ namespace Plausibel.Operator
             return _Name;
         }
 
+        virtual public void Reset()
+        {
+            _IsFull = false;
+            _IsUsed = false;
+            _TotalDelay = 0;
+        }
+
         protected void SetDelay(double delay)
         {
             _TotalDelay = delay;
@@ -70,6 +77,6 @@ namespace Plausibel.Operator
 
         abstract public void SetValue(Boolean input);
 
-
+        
     }
 }

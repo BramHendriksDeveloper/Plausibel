@@ -35,35 +35,41 @@ namespace Plausibel
                     }
                 } while (c == null);
 
-                Dictionary<string, bool> allInput = new Dictionary<string, bool>();
-
-                foreach (InputOperator io in c.GetInputOperators())
+                if (c.validate() == true)
                 {
-                    string input;
-                    do
+                    Dictionary<string, bool> allInput = new Dictionary<string, bool>();
+
+                    foreach (InputOperator io in c.GetInputOperators())
                     {
-                        System.Console.Write("Value of " + io.GetName() + ": ");
-                        input = System.Console.ReadKey().KeyChar.ToString();
-                        System.Console.WriteLine();
-                    } while (input != "0" && input != "1");
+                        string input;
+                        do
+                        {
+                            System.Console.Write("Value of " + io.GetName() + ": ");
+                            input = System.Console.ReadKey().KeyChar.ToString();
+                            System.Console.WriteLine();
+                        } while (input != "0" && input != "1");
 
-                    allInput.Add(io.GetName(), input == "1");
+                        allInput.Add(io.GetName(), input == "1");
+                    }
+
+                    Dictionary<string, bool> output = c.Emulate(allInput);
+                    double time = c.GetEmulationSpeed();
+
+                    System.Console.WriteLine("Speed was: " + time.ToString());
+
+                    foreach (KeyValuePair<string, bool> v in output)
+                    {
+                        System.Console.WriteLine("Value of " + v.Key + " became: " + (v.Value ? "1" : "0"));
+                    }
+
+                    System.Console.WriteLine("Press any key to continue ... ");
+
+                    System.Console.ReadKey();
                 }
-
-                Dictionary<string, bool> output = c.Emulate(allInput);
-                double time = c.GetEmulationSpeed();
-
-                System.Console.WriteLine("Speed was: " + time.ToString());
-
-                foreach(KeyValuePair<string, bool> v in output)
+                else
                 {
-                    System.Console.WriteLine("Value of " + v.Key + " became: " + (v.Value ? "1" : "0"));
+                    System.Console.WriteLine("Circuit was not valid.");
                 }
-
-                System.Console.WriteLine("Press any key to continue ... ");
-
-                System.Console.ReadKey();
-
             } while (true);
 
         }

@@ -34,7 +34,7 @@ namespace Plausibel.Operator
             _Value = input;
         }
 
-        public bool GetValue()
+        public Boolean GetValue()
         {
             if (!IsUsed())
             {
@@ -46,6 +46,12 @@ namespace Plausibel.Operator
             }
 
             return _Value;
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            _Value = false;
         }
     }
 }
