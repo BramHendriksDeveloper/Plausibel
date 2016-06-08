@@ -25,7 +25,7 @@ namespace Plausibel.Parser
             {
                 Console.WriteLine("Please open a file first");
                 return result;
-            }
+        }
 
             Console.WriteLine("Init");
             String line;
@@ -70,7 +70,7 @@ namespace Plausibel.Parser
             String line;
 
             while ((line = _StreamReader.ReadLine()) != null)
-            {
+            {   
                 if (line.Length == 0)
                 {
                     return "";

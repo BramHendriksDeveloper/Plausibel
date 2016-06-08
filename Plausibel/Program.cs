@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Plausibel.Operator;
 using Plausibel.Parser;
 using Plausibel.Cirquit;
@@ -17,11 +14,26 @@ namespace Plausibel
             do
             {
                 OperatorFactory x = new OperatorFactory();
-                
+
                 FileParser p = new FileParser();
                 CirquitCreator cCreator = new CirquitCreator(p);
 
-                Cirquit.Cirquit c = cCreator.GetCirquit("one");
+                string circuitInput = "";
+                Cirquit.Cirquit c = null;
+                do
+                {
+                    System.Console.Write("Write the name of the circuit: ");
+                    circuitInput = System.Console.ReadLine();
+                    try
+                    {
+                        c = cCreator.GetCirquit(circuitInput);
+                        System.Console.WriteLine("Chosen circuit: " + circuitInput);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Console.WriteLine("Circuit does not exist in <Desktop>/circuits");
+                    }
+                } while (c == null);
 
                 Dictionary<string, bool> allInput = new Dictionary<string, bool>();
 
