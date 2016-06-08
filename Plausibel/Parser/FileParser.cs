@@ -14,7 +14,7 @@ namespace Plausibel.Parser
 
         public void SetCircuitName(string Name)
         {
-            _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\schemas\\" + Name + ".txt");
+            _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\circuits\\" + Name + ".txt");
         }
 
         public Dictionary<string, string> GetInitialization()
