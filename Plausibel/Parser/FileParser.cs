@@ -21,11 +21,11 @@ namespace Plausibel.Parser
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
 
-            if(_StreamReader == null)
+            if (_StreamReader == null)
             {
                 Console.WriteLine("Please open a file first");
                 return result;
-        }
+            }
 
             Console.WriteLine("Init");
             String line;
@@ -70,7 +70,7 @@ namespace Plausibel.Parser
             String line;
 
             while ((line = _StreamReader.ReadLine()) != null)
-            {   
+            {
                 if (line.Length == 0)
                 {
                     return "";
