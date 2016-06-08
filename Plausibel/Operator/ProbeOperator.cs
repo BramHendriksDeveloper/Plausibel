@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Plausibel.Operator
 {
-    class ProbeOperator : BaseOperator
+    public class ProbeOperator : BaseOperator
     {
 
         private Boolean _Value;
