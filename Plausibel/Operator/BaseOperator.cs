@@ -48,6 +48,12 @@ namespace Plausibel.Operator
             return _Name;
         }
 
+        virtual public void Reset()
+        {
+            _IsFull = false;
+            _IsUsed = false;
+        }
+
         abstract public Boolean PerformOperation();
 
 

@@ -23,6 +23,10 @@ namespace Plausibel.Operator
             Continue(output);
         }
 
-
+        public override void Reset()
+        {
+            base.Reset();
+            _Value = false;
+        }
     }
 }

@@ -38,5 +38,11 @@ namespace Plausibel.Operator
 
             return _Value;
         }
+
+        public override void Reset()
+        {
+            base.Reset();
+            _Value = false;
+        }
     }
 }

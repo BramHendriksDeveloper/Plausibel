@@ -52,7 +52,7 @@ namespace Plausibel.Cirquit
             }
         }
 
-        public bool Get(string operatorName)
+        public Boolean Get(string operatorName)
         {
             if (!_Operators.ContainsKey(operatorName) || !(_Operators[operatorName] is ProbeOperator))
             {
@@ -67,6 +67,43 @@ namespace Plausibel.Cirquit
             }
 
             return op.GetValue();
+        }
+
+        public void Reset()
+        {
+            foreach (KeyValuePair<string, BaseOperator> item in _Operators)
+            {
+                item.Value.Reset();
+            }
+        }
+
+        public Boolean validate()
+        {
+            Dictionary<string, bool> allInput = new Dictionary<string, bool>();
+
+            foreach (InputOperator io in GetInputOperators())
+            {
+                allInput.Add(io.GetName(), true);
+            }
+
+            foreach (KeyValuePair<string, bool> value in allInput)
+            {
+                Set(value.Key, value.Value);
+            }
+
+            foreach (KeyValuePair<string, BaseOperator> item in _Operators)
+            {
+                if(item.Value.IsFull() == false)
+                {
+                    Reset();
+                    return false;
+                }
+            }
+
+
+            System.Console.WriteLine("Validated");
+            Reset();
+            return true;
         }
     }
 }

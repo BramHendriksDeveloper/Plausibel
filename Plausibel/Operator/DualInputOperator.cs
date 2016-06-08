@@ -28,6 +28,11 @@ namespace Plausibel.Operator
             _IsUsed = true;
         }
 
-
+        public override void Reset()
+        {
+            base.Reset();
+            _Value = new bool[2];
+            _Iterator = 0;
+        }
     }
 }
