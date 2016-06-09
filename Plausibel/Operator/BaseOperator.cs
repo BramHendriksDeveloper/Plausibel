@@ -24,12 +24,15 @@ namespace Plausibel.Operator
             _NextOperators.Add(next);
         }
 
-        virtual public void Continue(Boolean output)
+        virtual public void Continue(Boolean output, Boolean showProcess)
         {
             foreach(BaseOperator next in _NextOperators)
             {
-                System.Console.WriteLine("Nav from " + _Name + " to " + next.GetName());
-                next.SetValue(output);
+                if(showProcess == true)
+                {
+                    System.Console.WriteLine("Nav from " + _Name + " to " + next.GetName() + " with value: " + (output ? "1" : "0"));
+                }
+                next.SetValue(output, showProcess);
             }
         }
 
@@ -57,7 +60,7 @@ namespace Plausibel.Operator
         abstract public Boolean PerformOperation();
 
 
-        abstract public void SetValue(Boolean input);
+        abstract public void SetValue(Boolean input, Boolean showProcess);
 
         
     }

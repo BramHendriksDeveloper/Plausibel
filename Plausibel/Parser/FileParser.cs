@@ -26,8 +26,7 @@ namespace Plausibel.Parser
                 Console.WriteLine("Please open a file first");
                 return result;
             }
-
-            Console.WriteLine("Init");
+            
             String line;
             while ((line = ReadNextLine()).Length > 0)
             {
@@ -48,8 +47,7 @@ namespace Plausibel.Parser
                 Console.WriteLine("Please open a file first");
                 return Operators;
             }
-
-            Console.WriteLine("Decorator");
+            
             String line;
             while ((line = ReadNextLine()).Length > 0)
             {

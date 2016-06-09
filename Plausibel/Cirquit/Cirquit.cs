@@ -31,21 +31,21 @@ namespace Plausibel.Cirquit
             return _InputOperators.Values.ToList();
         }
 
-        public Dictionary<string, bool> Emulate(Dictionary<string, bool> values)
+        public Dictionary<string, Boolean> Emulate(Dictionary<string, Boolean> values)
         {
-            foreach(KeyValuePair<string, bool> value in values)
+            foreach(KeyValuePair<string, Boolean> value in values)
             {
-                Set(value.Key, value.Value);
+                Set(value.Key, value.Value, true);
             }
 
             return _OutputOperators.ToDictionary(v => v.Value.GetName(), v => v.Value.GetValue());
         }
 
-        public void Set(string operatorName, bool value)
+        public void Set(string operatorName, Boolean value, Boolean showProcess)
         {
             if(_Operators.ContainsKey(operatorName) && _Operators[operatorName] is InputOperator && !_Operators[operatorName].IsFull())
             {
-                _Operators[operatorName].SetValue(value);
+                _Operators[operatorName].SetValue(value, showProcess);
             } else
             {
                 System.Console.WriteLine("This operator is not an input operator or has already been set.");
@@ -79,16 +79,16 @@ namespace Plausibel.Cirquit
 
         public Boolean validate()
         {
-            Dictionary<string, bool> allInput = new Dictionary<string, bool>();
+            Dictionary<string, Boolean> allInput = new Dictionary<string, Boolean>();
 
             foreach (InputOperator io in GetInputOperators())
             {
                 allInput.Add(io.GetName(), true);
             }
 
-            foreach (KeyValuePair<string, bool> value in allInput)
+            foreach (KeyValuePair<string, Boolean> value in allInput)
             {
-                Set(value.Key, value.Value);
+                Set(value.Key, value.Value, false);
             }
 
             foreach (KeyValuePair<string, BaseOperator> item in _Operators)
@@ -101,7 +101,8 @@ namespace Plausibel.Cirquit
             }
 
 
-            System.Console.WriteLine("Validated");
+            System.Console.WriteLine("Circuit was validated succesfully.");
+            System.Console.WriteLine("______________________________________________");
             Reset();
             return true;
         }

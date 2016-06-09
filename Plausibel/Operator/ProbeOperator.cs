@@ -18,7 +18,7 @@ namespace Plausibel.Operator
             throw new NotImplementedException();
         }
 
-        public override void SetValue(bool input)
+        public override void SetValue(bool input, Boolean showProcess)
         {
             _IsFull = true;
             _IsUsed = true;

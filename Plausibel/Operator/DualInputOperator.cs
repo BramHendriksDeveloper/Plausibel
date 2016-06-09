@@ -8,12 +8,12 @@ namespace Plausibel.Operator
 {
     public abstract class DualInputOperator : BaseOperator
     {
-        protected Boolean[] _Value = new bool[2];
+        protected Boolean[] _Value = new Boolean[2];
         private int _Iterator = 0;
 
          public DualInputOperator(String name) : base(name) { }
 
-        public override void SetValue(bool input)
+        public override void SetValue(Boolean input, Boolean showProcess)
         {
             _Value[_Iterator++] = input;
 
@@ -22,7 +22,7 @@ namespace Plausibel.Operator
                 _IsFull = true;
 
                 Boolean output = PerformOperation();
-                Continue(output);
+                Continue(output, showProcess);
             }
 
             _IsUsed = true;
@@ -31,7 +31,7 @@ namespace Plausibel.Operator
         public override void Reset()
         {
             base.Reset();
-            _Value = new bool[2];
+            _Value = new Boolean[2];
             _Iterator = 0;
         }
     }

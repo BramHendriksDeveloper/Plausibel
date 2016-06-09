@@ -24,14 +24,17 @@ namespace Plausibel
                 {
                     System.Console.Write("Write the name of the circuit: ");
                     circuitInput = System.Console.ReadLine();
+                    System.Console.WriteLine("______________________________________________");
                     try
                     {
                         c = cCreator.GetCirquit(circuitInput);
+                        System.Console.WriteLine("______________________________________________");
                         System.Console.WriteLine("Chosen circuit: " + circuitInput);
                     }
                     catch (Exception e)
                     {
                         System.Console.WriteLine("Circuit does not exist in <Desktop>/circuits");
+                        System.Console.WriteLine("______________________________________________");
                     }
                 } while (c == null);
 
@@ -52,6 +55,8 @@ namespace Plausibel
                         allInput.Add(io.GetName(), input == "1");
                     }
 
+                    System.Console.WriteLine("______________________________________________");
+
                     Dictionary<string, bool> output = c.Emulate(allInput);
 
                     foreach (KeyValuePair<string, bool> v in output)
@@ -59,6 +64,7 @@ namespace Plausibel
                         System.Console.WriteLine("Value of " + v.Key + " became: " + (v.Value ? "1" : "0"));
                     }
 
+                    System.Console.WriteLine("______________________________________________");
                     System.Console.WriteLine("Press any key to continue ... ");
 
                     System.Console.ReadKey();

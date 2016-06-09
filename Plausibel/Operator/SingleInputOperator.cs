@@ -14,13 +14,13 @@ namespace Plausibel.Operator
         public SingleInputOperator(String name) : base(name) { }
         
 
-        public override void SetValue(bool input)
+        public override void SetValue(bool input, Boolean showProcess)
         {
             _IsUsed = true;
             _IsFull = true;
             _Value = input;
             Boolean output = PerformOperation();
-            Continue(output);
+            Continue(output, showProcess);
         }
 
         public override void Reset()
