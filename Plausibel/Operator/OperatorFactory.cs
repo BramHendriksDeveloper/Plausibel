@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Plausibel.Operator
 {
-    class OperatorFactory
+    public class OperatorFactory
     {
         public BaseOperator GetOperatorByName(string operatorName, string name)
         {

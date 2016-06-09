@@ -8,6 +8,16 @@ namespace Plausibel.Operator
 {
     public class NorOperator : DualInputOperator
     {
+        private static double _Delay = 0.3;
+
+        public override double Delay
+        {
+            get
+            {
+                return NorOperator._Delay;
+            }
+        }
+
         public NorOperator(String name) : base(name) { }
 
         public override bool PerformOperation()

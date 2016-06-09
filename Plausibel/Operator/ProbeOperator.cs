@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Plausibel.Operator
 {
-    class ProbeOperator : BaseOperator
+    public class ProbeOperator : BaseOperator
     {
+        private static double _Delay = 0.3;
+
+        public override double Delay
+        {
+            get
+            {
+                return ProbeOperator._Delay;
+            }
+        }
 
         private Boolean _Value;
 

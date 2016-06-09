@@ -38,7 +38,7 @@ namespace Plausibel
                     }
                 } while (c == null);
 
-                if(c.validate() == true)
+                if (c.validate() == true)
                 {
                     Dictionary<string, bool> allInput = new Dictionary<string, bool>();
 
@@ -58,6 +58,9 @@ namespace Plausibel
                     System.Console.WriteLine("______________________________________________");
 
                     Dictionary<string, bool> output = c.Emulate(allInput);
+                    double time = c.GetEmulationSpeed();
+
+                    System.Console.WriteLine("Speed was: " + time.ToString());
 
                     foreach (KeyValuePair<string, bool> v in output)
                     {
