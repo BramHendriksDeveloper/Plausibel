@@ -20,6 +20,12 @@ namespace Plausibel.Operator
             operatorName = GetClassName(operatorName);
             
             Type type = Type.GetType("Plausibel.Operator." + operatorName);
+            
+            if(type == null)
+            {
+                Console.WriteLine("Operator does not exist");
+                return null;
+            }
 
             return (BaseOperator) Activator.CreateInstance(type, new object[] { name });
         }
