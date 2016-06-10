@@ -128,20 +128,18 @@ namespace Plausibel.Cirquit
         {
             Dictionary<string, Boolean> allInput = new Dictionary<string, Boolean>();
 
+            // set all input operators to true
             foreach (InputOperator io in GetInputOperators())
             {
-                allInput.Add(io.GetName(), true);
+                io.SetValue(true);
             }
 
-            foreach (KeyValuePair<string, Boolean> value in allInput)
-            {
-                Set(value.Key, value.Value, false);
-            }
-
+            // check if all operators have been used
             foreach (KeyValuePair<string, BaseOperator> item in _Operators)
             {
                 if(item.Value.IsFull() == false)
                 {
+                    System.Console.WriteLine("Operator " + item.Key + " is not completed");
                     Reset();
                     return false;
                 }
