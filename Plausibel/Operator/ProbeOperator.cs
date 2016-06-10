@@ -61,6 +61,16 @@ namespace Plausibel.Operator
         }
 
         /// <summary>
+        /// Huh? The probe should not be required to print the process
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="nextOperator"></param>
+        protected override void PrintProcess(bool output, BaseOperator nextOperator)
+        {
+            System.Console.WriteLine("Probe should be the final stage");
+        }
+
+        /// <summary>
         /// Rest the probe operator
         /// </summary>
         public override void Reset()

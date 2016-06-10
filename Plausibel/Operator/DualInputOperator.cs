@@ -35,6 +35,17 @@ namespace Plausibel.Operator
         }
 
         /// <summary>
+        /// Print the process of the dual input operator
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="nextOperator"></param>
+        protected override void PrintProcess(bool output, BaseOperator nextOperator)
+        {
+            String inputs = (_Value[0] ? "1" : "0") + ":" + (_Value[1] ? "1" : "0");
+            System.Console.WriteLine("Nav from " + GetName() + " to " + nextOperator.GetName() + ": " + inputs + "->" + (output ? "1" : "0"));
+        }
+
+        /// <summary>
         /// Reset both values of the dual input operator
         /// </summary>
         public override void Reset()

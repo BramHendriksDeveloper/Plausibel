@@ -58,14 +58,14 @@ namespace Plausibel
                     System.Console.WriteLine("______________________________________________");
 
                     Dictionary<string, bool> output = c.Emulate(allInput);
-                    double time = c.GetEmulationSpeed();
-
-                    System.Console.WriteLine("Speed was: " + time.ToString());
 
                     foreach (KeyValuePair<string, bool> v in output)
                     {
                         System.Console.WriteLine("Value of " + v.Key + " became: " + (v.Value ? "1" : "0"));
                     }
+
+                    double time = c.GetEmulationSpeed();
+                    System.Console.WriteLine("Speed was: " + time.ToString());
 
                     System.Console.WriteLine("______________________________________________");
                     System.Console.WriteLine("Press any key to continue ... ");

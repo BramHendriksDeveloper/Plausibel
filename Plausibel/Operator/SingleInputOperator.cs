@@ -24,6 +24,16 @@ namespace Plausibel.Operator
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="nextOperator"></param>
+        protected override void PrintProcess(bool output, BaseOperator nextOperator)
+        {
+            System.Console.WriteLine("Nav from " + GetName() + " to " + nextOperator.GetName() + ": " + (_Value ? "1" : "0") + " -> " + (output ? "1" : "0"));
+        }
+
+        /// <summary>
         /// Rest the single input operator
         /// </summary>
         public override void Reset()

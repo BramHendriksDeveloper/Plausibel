@@ -21,6 +21,16 @@ namespace Plausibel.Operator
         public InputOperator(String name) : base(name) { }
 
         /// <summary>
+        /// Print the process of the input operator
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="nextOperator"></param>
+        protected override void PrintProcess(bool output, BaseOperator nextOperator)
+        {
+            System.Console.WriteLine("Nav from input " + GetName() + " to " + nextOperator.GetName() + " with value: " + (output ? "1" : "0"));
+        }
+
+        /// <summary>
         /// An input operator does not perform any modification to the value, so just return the original value
         /// </summary>
         /// <returns></returns>

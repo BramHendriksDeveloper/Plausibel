@@ -63,7 +63,7 @@ namespace Plausibel.Operator
             {
                 if(showProcess == true)
                 {
-                    System.Console.WriteLine("Nav from " + _Name + " to " + next.GetName() + " with value: " + (output ? "1" : "0"));
+                    PrintProcess(output, next);
                 }
                 next.SetDelay(_TotalDelay + Delay);
                 next.SetValue(output, showProcess);
@@ -130,6 +130,12 @@ namespace Plausibel.Operator
         /// </summary>
         /// <returns></returns>
         abstract public Boolean PerformOperation();
+
+        /// <summary>
+        /// Print the process
+        /// </summary>
+        /// <param name="nextOperator"></param>
+        abstract protected void PrintProcess(bool output, BaseOperator nextOperator);
 
         /// <summary>
         /// Set the input of this operator
