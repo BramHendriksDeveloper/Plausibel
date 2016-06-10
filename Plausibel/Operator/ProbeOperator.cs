@@ -18,6 +18,9 @@ namespace Plausibel.Operator
             }
         }
 
+        /// <summary>
+        /// Since the value of the probe should be accessable over time, save it as a prop
+        /// </summary>
         private Boolean _Value;
 
         public ProbeOperator(String name) : base(name) { }
@@ -27,6 +30,11 @@ namespace Plausibel.Operator
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Set the value of the probe operator
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="showProcess"></param>
         public override void SetValue(bool input, Boolean showProcess)
         {
             _IsFull = true;
@@ -34,6 +42,10 @@ namespace Plausibel.Operator
             _Value = input;
         }
 
+        /// <summary>
+        /// Get the value of the probe operator. This method will output errors in the console
+        /// </summary>
+        /// <returns></returns>
         public Boolean GetValue()
         {
             if (!IsUsed())
@@ -48,6 +60,9 @@ namespace Plausibel.Operator
             return _Value;
         }
 
+        /// <summary>
+        /// Rest the probe operator
+        /// </summary>
         public override void Reset()
         {
             base.Reset();

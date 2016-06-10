@@ -20,7 +20,11 @@ namespace Plausibel.Operator
                 return AndOperator._Delay;
             }
         }
-
+        
+        /// <summary>
+        /// Perform the and operation A ^ B
+        /// </summary>
+        /// <returns>bool</returns>
         public override bool PerformOperation()
         {
             return _Value[0] && _Value[1];

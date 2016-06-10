@@ -20,6 +20,10 @@ namespace Plausibel.Operator
 
         public OrOperator(String name) : base(name) { }
 
+        /// <summary>
+        /// Perform the OR operation A v B
+        /// </summary>
+        /// <returns></returns>
         public override bool PerformOperation()
         {
             return _Value[0] || _Value[1];

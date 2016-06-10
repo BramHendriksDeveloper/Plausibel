@@ -17,16 +17,22 @@ namespace Plausibel.Parser
             _StreamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\circuits\\" + Name + ".txt");
         }
 
+        /// <summary>
+        /// Return a list with the definition of all operators
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetInitialization()
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
 
             if (_StreamReader == null)
             {
+                // StreamReader not opened yet
                 Console.WriteLine("Please open a file first");
                 return result;
             }
             
+            // read file line by line until the first empty line occurs
             String line;
             while ((line = ReadNextLine()).Length > 0)
             {
@@ -40,6 +46,11 @@ namespace Plausibel.Parser
             return result;
         }
 
+        /// <summary>
+        /// Set the operators as a circuit
+        /// </summary>
+        /// <param name="Operators"></param>
+        /// <returns></returns>
         public Dictionary<string, BaseOperator> DecorateOperators(Dictionary<string, BaseOperator> Operators)
         {
             if (_StreamReader == null)
@@ -63,6 +74,10 @@ namespace Plausibel.Parser
             return Operators;
         }
 
+        /// <summary>
+        /// Read the next line (skip lines starting with a hastag
+        /// </summary>
+        /// <returns></returns>
         private string ReadNextLine()
         {
             String line;
@@ -86,6 +101,11 @@ namespace Plausibel.Parser
             return "";
         }
 
+        /// <summary>
+        /// Extract the details of a line
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private string[] ExtractLine(String line)
         {
             var charsToRemove = new string[] { " ", "\t", "\u0009", "_", ";" };
@@ -102,6 +122,9 @@ namespace Plausibel.Parser
             };
         }
 
+        /// <summary>
+        /// Quit parsing, close the connection to the file
+        /// </summary>
         public void StopParsing()
         {
             _StreamReader.Close();

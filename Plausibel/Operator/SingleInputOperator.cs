@@ -23,6 +23,9 @@ namespace Plausibel.Operator
             Continue(output, showProcess);
         }
 
+        /// <summary>
+        /// Rest the single input operator
+        /// </summary>
         public override void Reset()
         {
             base.Reset();

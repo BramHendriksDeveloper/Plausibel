@@ -20,6 +20,10 @@ namespace Plausibel.Operator
 
         public NotOperator(String name) : base(name) { }
 
+        /// <summary>
+        /// Perform the NOT operation !A
+        /// </summary>
+        /// <returns></returns>
         public override bool PerformOperation()
         {
             return !_Value;

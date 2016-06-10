@@ -20,9 +20,13 @@ namespace Plausibel.Operator
 
         public XorOperator(String name) : base(name) { }
 
+        /// <summary>
+        /// Perform the xor operation (A ^ !B) v (!A ^ B)
+        /// </summary>
+        /// <returns></returns>
         public override bool PerformOperation()
         {
-            return (!_Value[0] && _Value[1]) || (_Value[0] && !_Value[1]);
+            return _Value[0] != _Value[1];
         }
     }
 }

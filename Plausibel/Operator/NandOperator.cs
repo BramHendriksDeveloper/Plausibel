@@ -20,6 +20,10 @@ namespace Plausibel.Operator
 
         public NandOperator(String name) : base(name) { }
 
+        /// <summary>
+        /// Perform NAND operation !(A ^ B)
+        /// </summary>
+        /// <returns></returns>
         public override bool PerformOperation()
         {
             return !(_Value[0] && _Value[1]);
