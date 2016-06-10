@@ -26,11 +26,20 @@ namespace Plausibel.Cirquit
             }
         }
 
+        /// <summary>
+        /// Get a list with all input operators
+        /// </summary>
+        /// <returns></returns>
         public List<InputOperator> GetInputOperators()
         {
             return _InputOperators.Values.ToList();
         }
 
+        /// <summary>
+        /// Emulate a circuit with given inputs
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public Dictionary<string, Boolean> Emulate(Dictionary<string, Boolean> values)
         {
             foreach(KeyValuePair<string, Boolean> value in values)
@@ -41,6 +50,10 @@ namespace Plausibel.Cirquit
             return _OutputOperators.ToDictionary(v => v.Value.GetName(), v => v.Value.GetValue());
         }
 
+        /// <summary>
+        /// Get the emulation speed
+        /// </summary>
+        /// <returns></returns>
         public double GetEmulationSpeed()
         {
             double longest = 0;
@@ -57,6 +70,12 @@ namespace Plausibel.Cirquit
             return longest;
         }
 
+        /// <summary>
+        /// Set a single operator's value
+        /// </summary>
+        /// <param name="operatorName"></param>
+        /// <param name="value"></param>
+        /// <param name="showProcess"></param>
         public void Set(string operatorName, Boolean value, Boolean showProcess)
         {
             if(_Operators.ContainsKey(operatorName) && _Operators[operatorName] is InputOperator && !_Operators[operatorName].IsFull())
@@ -68,6 +87,11 @@ namespace Plausibel.Cirquit
             }
         }
 
+        /// <summary>
+        /// Get the value of a single operator
+        /// </summary>
+        /// <param name="operatorName"></param>
+        /// <returns></returns>
         public Boolean Get(string operatorName)
         {
             if (!_Operators.ContainsKey(operatorName) || !(_Operators[operatorName] is ProbeOperator))
@@ -85,6 +109,9 @@ namespace Plausibel.Cirquit
             return op.GetValue();
         }
 
+        /// <summary>
+        /// Reset the circuit
+        /// </summary>
         public void Reset()
         {
             foreach (KeyValuePair<string, BaseOperator> item in _Operators)
@@ -93,6 +120,10 @@ namespace Plausibel.Cirquit
             }
         }
 
+        /// <summary>
+        /// Validate the circuit
+        /// </summary>
+        /// <returns></returns>
         public Boolean validate()
         {
             Dictionary<string, Boolean> allInput = new Dictionary<string, Boolean>();
